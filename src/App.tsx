@@ -1,11 +1,16 @@
 import './App.css';
+import Chat from './components/conversation';
+import Conversations from './components/messageList';
+import Details from './components/details';
 
 function App() {
   return (
     <>
-      <div className="bg-yellow-900">hello</div>
-      <input className="bg-red-200 w-full" type="text" />
-      <div className="bg-slate-800">Black</div>
+      <div className="mainscreen">
+        <Conversations />
+        <Chat />
+        <Details />
+      </div>
     </>
   );
 }
