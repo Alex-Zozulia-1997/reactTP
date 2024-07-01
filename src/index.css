@@ -4,6 +4,8 @@
 
 #root {
   display: flex;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.5rem;
   flex-direction: column;
   height: 100vh;
   align-items: center;
@@ -13,43 +15,69 @@
 }
 
 .mainscreen {
+  color: rgba(245, 245, 245);
   display: flex;
   height: 91%;
   width: 91%;
-  background-color: rgba(100, 138, 255, 0.5);
+  background-color: rgba(31, 48, 100, 0.9);
   border-radius: 12px;
   backdrop-filter: blur(6px) saturate(150%);
 }
 
 .chat {
+  border-left: 1px solid rgba(255, 255, 255, 0.8);
   display: flex;
-  flex: 3;
+  flex: 2;
   flex-direction: column;
   width: 100%;
   padding: 10px;
   overflow-y: auto;
   /* background-color: rgba(255, 255, 255, 1); */
 }
+.chatscreen {
+  display: flex;
+  flex: 2.5;
+  flex-direction: column;
+  padding-top: 10px;
+  /* background-color: rgba(255, 255, 255, 1); */
+}
+
 .list {
   display: flex;
   flex: 1;
   flex-direction: column;
   padding: 10px;
   overflow-y: auto;
-  /* background-color: rgb(255, 255, 255); */
 }
-
-.details-class {
+.dialogues {
+  min-width: 270px;
   display: flex;
   flex: 1;
   flex-direction: column;
   padding: 10px;
+  border-right: 1px solid rgba(255, 255, 255, 0.8);
+}
+.message-sender {
+  display: flex;
+  flex-direction: column;
+}
+
+.details {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  flex-direction: column;
   overflow-y: auto;
+  border-left: 1px solid rgba(255, 255, 255, 0.8);
   /* background-color: rgb(255, 255, 255); */
 }
 
 #icons {
+  display: flex;
+  flex-direction: row;
+  margin-right: 1%;
   img {
+    filter: invert(1);
     width: 30px;
     height: 30px;
     margin: 5px;
@@ -59,6 +87,8 @@
 #user-info {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
   img {
     width: 50px;
     height: 50px;
@@ -67,31 +97,394 @@
   }
 }
 #user-block {
+  width: 100%;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   align-items: center;
   margin: 10px;
 }
+
 .search {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(105, 115, 235, 0.8);
   display: flex;
   flex-direction: row;
   align-items: center;
   margin: 10px;
+
   input {
     width: 100%;
     padding: 10px;
     border-radius: 10px;
     border: none;
     outline: none;
+    background-color: transparent;
+    color: white;
   }
   img {
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
     margin: 5px;
     cursor: pointer;
   }
+}
+.listitem {
+  margin: 5px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  div {
+    display: flex;
+    align-items: flex-start;
+    margin: 5px;
+    align-items: center;
+  }
+}
+::placeholder {
+  color: white;
+  opacity: 1; /* Firefox */
+}
+
+/* 
+
+*/
+.top {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+}
+.bottom {
+  margin-top: 10px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.8);
   input {
-    background-color: transparent;
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background-color: rgba(100, 138, 255, 0.8);
+    outline: none;
+    color: white;
+  }
+  button {
+    background-color: rgba(205, 255, 255, 0.8);
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    color: white;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+  .picker {
+    position: absolute;
+    left: 0;
+    bottom: 40px;
+  }
+  .emoji {
+    position: relative;
+  }
+}
+.center {
+  color: rgba(5, 5, 5);
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  overflow-y: scroll;
+  gap: 10px;
+
+  .message {
+    border-radius: 10px;
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    &#own {
+      justify-content: flex-end;
+      background-color: rgba(25, 255, 255, 0.8);
+    }
+    img {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      margin: 5px;
+    }
+    span {
+      color: rgba(120, 125, 105, 0.6);
+      margin: 5px;
+    }
+    p {
+      margin: 5px;
+    }
+  }
+  .left {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: flex-start;
+  }
+  .right {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: flex-end;
+  }
+  .conversator {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+  }
+  .text {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    img {
+      width: 90%;
+      height: 400px;
+      margin: 5px;
+      border-radius: 1px;
+    }
+  }
+}
+/* 
+
+*/
+
+.user-container {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+  img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 5px;
+  }
+}
+.options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+  button {
+    background-color: rgba(25, 25, 25, 0.8);
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    color: white;
+    cursor: pointer;
+  }
+  img {
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+  }
+  .option {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 5px;
+    .sharepics {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .pic {
+      display: flex;
+      flex-direction: column;
+      flex-basis: 50%;
+      box-sizing: border-box;
+      img {
+        width: 100px;
+        height: 100px;
+        margin: 5px;
+        cursor: pointer;
+      }
+      .picinfo {
+        span {
+          color: rgba(120, 125, 105, 0.9);
+        }
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        img {
+          padding-right: 15px;
+          margin: 0;
+          width: 15px;
+          height: 15px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+/* 
+ */
+.login-page {
+  width: 100%;
+  height: 100%;
+  gap: 100px;
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 10px;
+}
+.login,
+.create-user {
+  flex: 1;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background-color: rgba(102, 138, 255, 0.5);
+  border-radius: 10px;
+  .input {
+    width: 70%;
+  }
+  form {
+    gap: 5px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    label {
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      img {
+        width: 30%;
+        height: 30%;
+        margin: 5px;
+        cursor: pointer;
+      }
+    }
+    #submit {
+      margin-top: 25px;
+      width: 100%;
+      background-color: rgba(5, 5, 5, 0.8);
+    }
+    input {
+      margin-top: 10px;
+      width: 100%;
+      padding: 10px;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      background-color: rgba(205, 205, 205, 0.4);
+      color: black;
+    }
+    button {
+      background-color: rgba(205, 255, 255, 0.8);
+      padding: 10px 20px;
+      border-radius: 5px;
+      border: none;
+      outline: none;
+      color: white;
+      cursor: pointer;
+    }
+  }
+  button:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+}
+
+/* 
+ */
+
+.add-user-search {
+  span {
+    color: white;
+    margin: 5px;
+  }
+  padding: 30px;
+  width: max-content;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  border-radius: 10px;
+  background-color: rgba(100, 100, 100, 0.7);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  img {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+  }
+  .search-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+  input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    background-color: rgba(205, 205, 205, 0.6);
+    color: black;
+  }
+  button {
+    background-color: rgba(205, 205, 205, 0.7);
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    color: white;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+  .search-info,
+  form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    gap: 10px;
   }
 }

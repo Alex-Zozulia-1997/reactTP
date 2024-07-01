@@ -1,9 +1,18 @@
-function ChatLisItem() {
+function ChatListItem({
+  Name = 'Betty Hopkins',
+  Message = 'sup?',
+  Avatar = '/src/assets/avatar.png',
+}) {
   return (
-    <div>
-      <h3>ChatListItem</h3>
+    <div className="listitem">
+      <img src={Avatar} alt="avatar" />
+      <div className="message-sender">
+        <span>{Name} </span>
+
+        <span>{Message} </span>
+      </div>
     </div>
   );
 }
 
-export default ChatLisItem;
+export default ChatListItem;
