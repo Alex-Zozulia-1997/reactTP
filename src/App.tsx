@@ -4,7 +4,7 @@ import Conversations from './components/messageList';
 import Details from './components/details';
 import Login from './components/login';
 import Notification from './components/notification';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './lib/firebase';
 import useUserStore from './lib/userStore';
