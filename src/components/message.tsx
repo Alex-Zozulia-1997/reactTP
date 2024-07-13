@@ -1,36 +1,38 @@
 function Message({
   own = false,
-  message = 'Hello, World!',
+  message = '',
   name = 'current chatter',
+  img = '',
+  time = '12:00',
 }) {
   if (own) {
     return (
       <div className="left">
         <div className="message" id="own">
           <div className="conversator">
-            <span>12:34</span>
+            <p>{name}</p>
+            <span>{time}</span>
           </div>
+
           <div className="text">
-            <p>
-              {message}
-              <img src="/src/assets/avatar.png" alt="sent" />
-            </p>
+            <p>{message}</p>
           </div>
+          {img && <img src={img} alt="sent" />}
         </div>
       </div>
     );
   } else {
     return (
       <div className="right">
-        <div className="message">
+        <div style={{ maxWidth: '70%' }} className="message">
           <div className="conversator">
-            <img src="/src/assets/avatar.png" alt="user" />
-            {/* <p>{name}</p> */}
-            <span>12:23</span>
+            <p>{name}</p>
+            <span>{time}</span>
           </div>
           <div className="text">
             <p>{message}</p>
           </div>
+          {img && <img src={img} alt="sent" />}
         </div>
       </div>
     );

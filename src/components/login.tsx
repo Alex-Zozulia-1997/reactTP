@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { doc, setDoc } from 'firebase/firestore';
-import upload from '../firebase/upload';
+import upload from '../lib/upload';
 import { toast } from 'react-toastify';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from 'firebase/auth';
-import { auth, db } from '../firebase/firebase';
+import { auth, db } from '../lib/firebase';
 
 export default function Login() {
   const [loading, setLoading] = useState(false);
@@ -43,7 +43,7 @@ export default function Login() {
         username,
         email,
         id: response.user.uid,
-        blocked: false,
+        blocked: [],
         avatar: imageUrl,
       });
 

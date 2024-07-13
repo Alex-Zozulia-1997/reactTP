@@ -39,6 +39,7 @@
   flex: 2.5;
   flex-direction: column;
   padding-top: 10px;
+  max-width: 60vw;
   /* background-color: rgba(255, 255, 255, 1); */
 }
 
@@ -149,6 +150,10 @@
     align-items: center;
   }
 }
+#unread {
+  background: rgba(255, 255, 255, 0.8);
+  color: black;
+}
 ::placeholder {
   color: white;
   opacity: 1; /* Firefox */
@@ -159,11 +164,18 @@
 */
 .top {
   display: flex;
+  gap: 15px;
   width: 100%;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+  img {
+    width: 50px;
+    border-radius: 50%;
+    height: 50px;
+    margin: 5px;
+    cursor: pointer;
+  }
 }
 .bottom {
   margin-top: 10px;
@@ -182,6 +194,10 @@
     background-color: rgba(100, 138, 255, 0.8);
     outline: none;
     color: white;
+    &:disabled {
+      cursor: not-allowed;
+      background-color: rgba(100, 100, 100, 0.7);
+    }
   }
   button {
     background-color: rgba(205, 255, 255, 0.8);
@@ -191,6 +207,10 @@
     outline: none;
     color: white;
     cursor: pointer;
+    &:disabled {
+      cursor: not-allowed;
+      background-color: rgba(100, 100, 100, 0.7);
+    }
   }
   button:hover {
     background-color: rgba(255, 255, 255, 0.8);
@@ -220,18 +240,26 @@
     justify-content: flex-start;
     margin: 10px;
     background-color: rgba(255, 255, 255, 0.8);
+    img {
+      width: 95%;
+      height: 100%;
+      padding: 5px;
+      max-width: 500px;
+      max-height: 500px;
+    }
     &#own {
       justify-content: flex-end;
-      background-color: rgba(25, 255, 255, 0.8);
+      background-color: rgba(51, 136, 255, 0.8);
     }
-    img {
+    #avatar {
       width: 20px;
       height: 20px;
       border-radius: 50%;
       margin: 5px;
     }
+
     span {
-      color: rgba(120, 125, 105, 0.6);
+      color: rgba(255, 255, 255, 0.9);
       margin: 5px;
     }
     p {
@@ -491,4 +519,14 @@
     padding: 10px;
     gap: 10px;
   }
+}
+
+/* 
+ */
+.loading {
+  padding: 50px;
+  font-size: 2rem;
+  color: black;
+  background-color: rgba(200, 200, 200, 0.8);
+  border-radius: 10px;
 }

@@ -1,22 +1,52 @@
 import { useState } from 'react';
-function Details({
-  name = 'Current Chatter',
-  status = 'While their companios slept, they toiled upward in the night',
-}) {
+import { auth, db } from '../lib/firebase';
+import useUserStore from '../lib/userStore';
+import useChatStore from '../lib/chatStore';
+import { arrayRemove, arrayUnion, doc, updateDoc } from 'firebase/firestore';
+function Details() {
+  const { currentUser } = useUserStore();
+  const {
+    chatId,
+    user,
+    isRecieverBlocked,
+    isCurrentUserBlocked,
+    changeBlockStatus,
+  } = useChatStore();
   const [showPics, setShowPics] = useState(false);
+  const handleBlock = async () => {
+    if (!user) return;
+
+    const userDocRef = doc(db, 'users', currentUser.id);
+
+    try {
+      await updateDoc(userDocRef, {
+        blocked: isRecieverBlocked ? arrayRemove(user.id) : arrayUnion(user.id),
+      });
+      console.log('Blocked');
+
+      changeBlockStatus();
+      console.log(isRecieverBlocked);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <div className="details">
       <div className="user-container">
-        <img src="/src/assets/avatar.png" alt="avatar" />
+        {user?.avatar ? (
+          <img src={user.avatar} alt="avatar" />
+        ) : (
+          <img src="/src/assets/avatar.png" alt="" />
+        )}
+
         <div className="user-info">
-          <h2>{name}</h2>
-          <p>{status}</p>
+          <h2>{user?.username}</h2>
         </div>
       </div>
       <div className="options">
         <div className="option">
-          <span>Shat Settings</span>
-          <img src="src/assets/plus.svg" alt="" />
+          <span>Chat Settings</span>
         </div>
 
         <div className="option">
@@ -85,8 +115,14 @@ function Details({
             width: '100%',
             marginTop: '20px',
           }}>
-          <button>Block</button>
-          <button>Report</button>
+          <button onClick={handleBlock}>
+            {isCurrentUserBlocked
+              ? 'You are Blocked!'
+              : isRecieverBlocked
+              ? 'Unblock'
+              : 'Block'}
+          </button>
+          <button onClick={() => auth.signOut()}>Logout</button>
         </div>
       </div>
     </div>
